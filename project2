@@ -1,0 +1,156 @@
+#include <iostream>
+using namespace std;
+struct coordsys
+{
+	int axx;
+	int axy;
+	void addCoord();
+	void showCoord();
+	void kvadrant(int kvadrant);
+	void showAllKvadrants();
+} cords[20];
+
+int i = 0;
+
+void addCoord()
+{
+	cout << "Enter ax x:";
+	cin >> cords[i].axx;
+	cout << "Enter ax y:";
+	cin >> cords[i].axy;
+	cout << "Added success!";
+	i++;
+}
+void showCoords()
+{
+	int j = 0;
+	cout << "What coords I'm enter in the struct";
+	while (j < i)
+	{ 
+		cout << "x: " << cords[j].axx << " y: " << cords[j].axy << endl;
+		j++;
+	}
+}
+void kvadrant(int kvadrant)
+{
+	int kv = 0, j = 0;
+	if (kvadrant == 1)
+	{
+		while (j<i)
+		{
+			if (cords[j].axx>0 && cords[j].axy > 0)
+			{
+				kv++;
+			}
+			j++;
+		}
+	}
+	else if (kvadrant == 2)
+	{
+		while (j<i)
+		{
+			if (cords[j].axx<0 && cords[j].axy > 0)
+			{
+				kv++;
+			}
+			j++;
+		}
+	}
+	else if (kvadrant == 3)
+	{
+		while (j<i)
+		{
+			if (cords[j].axx<0 && cords[j].axy < 0)
+			{
+				kv++;
+			}
+			j++;
+		}
+	}
+	else
+	{
+		while (j<i)
+		{
+			if (cords[j].axx>0 && cords[j].axy < 0)
+			{
+				kv++;
+			}
+			j++;
+		}
+	}
+	cout << "The count of kvandrat " << kvadrant << " is: " << kv << endl;
+}
+
+void showAllKvadrants()
+{
+	int kv1 = 0, kv2 = 0, kv3 = 0,kv4 = 0, j = 0;
+	while (j<i)
+		{
+			if (cords[j].axx>0 && cords[j].axy > 0)
+			{
+				kv1++;
+			}
+			if (cords[j].axx<0 && cords[j].axy > 0)
+			{
+				kv2++;
+			}
+			if (cords[j].axx<0 && cords[j].axy < 0)
+			{
+				kv3++;
+			}
+			if (cords[j].axx>0 && cords[j].axy < 0)
+			{
+				kv4++;
+			}
+			j++;
+		}
+	cout << "The count of 1 kvandrat is: " << kv1 << endl;
+	cout << "The count of 2 kvandrat is: " << kv2 << endl;
+	cout << "The count of 3 kvandrat is: " << kv3 << endl;
+	cout << "The count of 4 kvandrat is: " << kv4 << endl;
+}
+
+void main()
+{
+	int choice = -1;
+	while (choice != 0)
+	{
+		cout << "Coords information system. Make your choice"<<endl;
+		cout << "1. Add new coords"<<endl;
+		cout << "2. Show all coords"<<endl;
+		cout << "3. Search by kvadrant" << endl;
+		cout << "4. Show count of all" << endl;
+		cout << "0. Exit";
+		cin >> choice;
+		if (choice == 1)
+		{
+			addCoord();
+		}
+		else if (choice == 2)
+		{
+			showCoords();
+		}
+		else if (choice == 3)
+		{
+			int kvadr;
+			cout << "Enter number of kvadrant (1,2,3,4):" << endl;
+			cin >> kvadr;
+			if (kvadr<0 || kvadr>4)
+			{
+				cout << "Wrong input!" << endl;
+			}
+			else
+			{
+				kvadrant(kvadr);
+			}
+		}
+		else if (choice == 4)
+		{
+			showAllKvadrants();
+		}
+		else
+		{
+			cout << "See you!";			
+		}
+	}
+}
